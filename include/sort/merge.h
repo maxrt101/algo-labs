@@ -1,3 +1,10 @@
+/**
+ * Merge Sort
+ *
+ * @file   sort/merge.h
+ * @author maxrt101
+ */
+
 #ifndef _MERGE_H
 #define _MERGE_H
 

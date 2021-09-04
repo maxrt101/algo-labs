@@ -1,3 +1,10 @@
+/**
+ * Heap Sort
+ *
+ * @file   sort/heap.h
+ * @author maxrt101
+ */
+
 #ifndef _HEAP_H
 #define _HEAP_H
 

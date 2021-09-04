@@ -1,5 +1,5 @@
 /**
- * Implements Quick Sort
+ * Quick Sort
  * The explanation of the idea behind quick sort is in
  * description of quickSort function
  *
