@@ -33,4 +33,8 @@
 
 # MacOS
 .DS_Store
+*.dSYM
+
+# Project Specific
+bin
 
