@@ -32,15 +32,19 @@ inline Iter quickSortPartition(SortStats& stats, Compare compare, Iter begin, It
 
   for (Iter it = begin; it != end; it++) {
     if (compare(*it, *end)) {
-      std::iter_swap(gt_element, it);
+      if (*gt_element != *it) {
+        std::iter_swap(gt_element, it);
+        stats.swaps_count++;
+      }
       gt_element++;
-      stats.swaps_count++;
     }
     stats.comparisons_count++;
   }
 
-  std::iter_swap(gt_element, end);
-  stats.swaps_count++;
+  if (*gt_element != *end) {
+    std::iter_swap(gt_element, end);
+    stats.swaps_count++;
+  }
 
   return gt_element;
 }
