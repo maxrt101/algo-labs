@@ -12,13 +12,14 @@
 
 #include <functional>
 #include <algorithm>
+#include <utility>
 #include <chrono>
 #include <vector>
 
 #include "sort.h"
 
 /**
- * Quick Sort Partition
+ * Quick Sort - Partition
  *  Rearranges the array according to partition point
  * @param stats Sort statistics
  * @param compare Comparator for elements
