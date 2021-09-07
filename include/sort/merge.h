@@ -1,5 +1,11 @@
 /**
  * Merge Sort
+ * The idea behind Merge Sort is described in comments for functions in this file.
+ * Merge Sort Stats:
+ *  Time Complexity:
+ *   O(n*log n)
+ *  Space Complexity:
+ *   O(n)
  *
  * @file   sort/merge.h
  * @author maxrt101
@@ -18,7 +24,8 @@
 
 /**
  * Merge Sort - Merge
- *  
+ *  Merges previously splited arrays, by sequentially comparing elements of both
+ *  arrays.
  * @param stats Sort statistics
  * @param compare Comparator for elements
  * @param begin Iterator that points to the begining of the array
@@ -47,7 +54,13 @@ mergeSortMerge(SortStats& stats, Compare compare, Iter begin, Iter middle, Iter 
 
 /**
  * Merge Sort
- *
+ *  Merge Sort follows the principle of Divide and Conquer. It works by
+ *  recursively splitting the array into 2 sub arrays until 1 element remains,
+ *  and then merging those arrays back into 1. With each merge, merged arrays
+ *  get sorted.
+ *  This functions works by getting an iterator to the middle element of the array,
+ *  and then running itself on both halfs of the input array, effectively splitting
+ *  it. After all splits are done, it starts merging splited arrays.
  * @param stats Sort statistics
  * @param compare Comparator for elements
  * @param begin Iterator that points to the begining of the array

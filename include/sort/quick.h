@@ -1,7 +1,13 @@
 /**
  * Quick Sort
  * The explanation of the idea behind quick sort is in
- * description of quickSort function
+ * description of quickSort function.
+ * Quick Sort Stats:
+ *  Time Complexity:
+ *   Worst: O(n^2)
+ *   Best: O(n*log n)
+ *  Space Complexity:
+ *   O(log n)
  *
  * @file   sort/quick.h
  * @author maxrt101
@@ -20,7 +26,10 @@
 
 /**
  * Quick Sort - Partition
- *  Rearranges the array according to partition point
+ *  Rearranges the array according to the partition point. It works by iterating
+ *  through the array and comparing every element with a partiion (pivot) point
+ *  (I selected the rightmost element to be a pivot point). If element is greted/less
+ *  then the pivot element, the element gets swapped with previously marked element.
  * @param stats Sort statistics
  * @param compare Comparator for elements
  * @param begin Iterator that points to the begining of the array
@@ -29,7 +38,7 @@
  */
 template <typename Iter, typename Compare>
 inline Iter quickSortPartition(SortStats& stats, Compare compare, Iter begin, Iter end) {
-  Iter gt_element = begin;
+  Iter prev = begin;
 
   for (Iter it = begin; it != end; it++) {
     if (compare(*it, *end)) {
@@ -56,7 +65,7 @@ inline Iter quickSortPartition(SortStats& stats, Compare compare, Iter begin, It
  *  After selecting a pivot, elements of the array are rearranged in such a way,
  *  that elements with values less than pivot's, are moved to the left side, and
  *  elements that values greater than pivot's, are moved to the right. Left and
- *  right arrays are divided in the same way. In the end we have sorted array.
+ *  right arrays are divided in the same way. In the end we have a sorted array.
  * @param stats Sort statistics
  * @param compare Comparator for elements
  * @param begin Iterator that points to the begining of the array
