@@ -26,6 +26,7 @@ using SortFunction = std::function<SortStats(std::vector<int>&, SortOrder)>;
 
 constexpr char g_array_delimiter = ',';
 constexpr auto g_default_sort_type = "merge";
+constexpr auto g_default_sort_order = "asc";
 
 static std::unordered_map<std::string, SortFunction> g_sort_functions {
   {"quick", quickSort<int>},
@@ -51,7 +52,7 @@ void usage(const char* executable_name) {
  * Parses command line arguments and calles sort
  */
 int main(int argc, char** argv) {
-  // With sort type being optional, we can have either 3 or 4 args
+  // With sort type & order being optional, we can have either 2, 3 or 4 args
   if (argc < 2 || argc > 4) {
     usage(argv[0]);
     return 1;
@@ -63,7 +64,7 @@ int main(int argc, char** argv) {
   std::string input_arr_str;
 
   if (argc == 2) { // ./sort ARRAY
-    order_str = "asc";
+    order_str = g_default_sort_order;
     input_arr_str = argv[1];
   } else if (argc == 3) { // ./sort ORDER ARRAY
     order_str = to_lowercase(argv[1]);
@@ -103,7 +104,7 @@ int main(int argc, char** argv) {
 
   SortStats stats;
 
-  // Call sort function that corresponds to chosensort_type
+  // Call sort function that corresponds to chosen sort_type
   try {
     stats = g_sort_functions.at(sort_type)(sort_vec, order);
   } catch (std::out_of_range e) {
