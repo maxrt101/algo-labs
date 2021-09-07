@@ -26,6 +26,8 @@ Unix like OSs (Linux, MacOS):
  - `cd algo_labs && git chekout lab1`
  - `make`
  - `./bin/sort`
-Widows: unsupported
-Note: usage is writted to the terminal if you run `bin/sort`
+
+Widows: unsupported  
+
+Note: usage is writted to the terminal if you run `bin/sort`  
 
