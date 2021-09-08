@@ -42,21 +42,21 @@ inline Iter quickSortPartition(SortStats& stats, Compare compare, Iter begin, It
 
   for (Iter it = begin; it != end; it++) {
     if (compare(*it, *end)) {
-      if (*gt_element != *it) {
-        std::iter_swap(gt_element, it);
+      if (*prev != *it) {
+        std::iter_swap(prev, it);
         stats.swaps_count++;
       }
-      gt_element++;
+      prev++;
     }
     stats.comparisons_count++;
   }
 
-  if (*gt_element != *end) {
-    std::iter_swap(gt_element, end);
+  if (*prev != *end) {
+    std::iter_swap(prev, end);
     stats.swaps_count++;
   }
 
-  return gt_element;
+  return prev;
 }
 
 /**
