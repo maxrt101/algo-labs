@@ -21,7 +21,9 @@ Tests must be present fot such cases:
 When sorting sorted array, there should be no swaps.
 
 ### How to run:
-Unix like OSs (Linux, MacOS):
+Unix like OSs (Linux, MacOS):  
+Dependencies: `make`, `gcc` or `clang`  
+Run:  
  - Clone the repo
  - `cd algo_labs && git chekout lab1`
  - `make`
@@ -30,4 +32,8 @@ Unix like OSs (Linux, MacOS):
 Widows: unsupported  
 
 Note: usage is writted to the terminal if you run `bin/sort`  
+
+### Tests:
+Dependencies: `python3`, `unittest` pip module
+Run: `python3 -m unittest`
 
