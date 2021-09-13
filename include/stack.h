@@ -65,8 +65,13 @@ class Stack {
   inline T pop() {
     T data = m_top->data();
     FrameType* frame = m_top;
-    m_top = m_top->prev();
-    m_top->next() = nullptr;
+    if (m_top->prev()) {
+      m_top = m_top->prev();
+      m_top->next() = nullptr;
+    } else {
+      m_top = nullptr;
+      m_head = nullptr;
+    }
     delete frame;
     m_size--;
     return data;
