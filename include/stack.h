@@ -8,6 +8,8 @@
 #ifndef _STACK_H
 #define _STACK_H
 
+#include <stdexcept>
+
 template <typename T>
 class Frame {
  private:
@@ -63,8 +65,13 @@ class Stack {
   }
   
   inline T pop() {
+    if (!m_top) {
+      throw std::underflow_error("Cannot pop from empty stack");
+    }
+
     T data = m_top->data();
     FrameType* frame = m_top;
+    
     if (m_top->prev()) {
       m_top = m_top->prev();
       m_top->next() = nullptr;
@@ -72,8 +79,10 @@ class Stack {
       m_top = nullptr;
       m_head = nullptr;
     }
+    
     delete frame;
     m_size--;
+    
     return data;
   }
   

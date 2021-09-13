@@ -80,7 +80,7 @@ static const std::vector<Test> tests {
     return true;
   }},
 
-  {"Find Test", []() -> bool {
+  {"Clear Test", []() -> bool {
     Stack<int> stack;
     const std::array<int, 4> numbers {10, 25, 50, 100};
     
@@ -97,6 +97,18 @@ static const std::vector<Test> tests {
     }
 
     return true;
+  }},
+  
+  {"Underflow Test", []() -> bool {
+    Stack<int> stack;
+  
+    try {
+      stack.pop();
+    } catch (std::underflow_error& e) {
+      return true;
+    }
+
+    return false;
   }}
 };
 
