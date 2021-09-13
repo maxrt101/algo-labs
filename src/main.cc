@@ -36,13 +36,14 @@ static const std::vector<Test> tests {
       return false;
     }
     
-    std::for_each(numbers.rbegin(), numbers.rend(), [&stack](int number){
+    bool failed = false;
+    std::for_each(numbers.rbegin(), numbers.rend(), [&stack, &failed](int number){
       if (stack.pop() != number) {
-        return false;
+        failed = true;
       }
     });
     
-    return true;
+    return !failed;
   }},
 
   {"Peak Test", []() -> bool {
@@ -114,12 +115,9 @@ static const std::vector<Test> tests {
 
 static void handleTestResult(const std::string& test_name, bool test_result) {
   if (test_result) {
-    std::cout << "[ " << k_green << " OK " << k_reset << " ] ";
+    std::cout << "[ " << k_green << " OK " << k_reset << " ] " << test_name << std::endl;
   } else {
-    std::cout << "[ " << k_red << "FAIL" << k_reset << " ] ";
-  }
-  std::cout << test_name << std::endl;
-  if (!test_result) {
+    std::cout << "[ " << k_red << "FAIL" << k_reset << " ] " << test_name << std::endl;
     exit(1);
   }
 }
