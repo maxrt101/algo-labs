@@ -12,6 +12,7 @@ template <typename T>
 class BinaryTree {
  public:
   using NodeType = Node<T>;
+  using SizeType = size_t;
 
   inline BinaryTree() {}
   inline ~BinaryTree() {
@@ -25,6 +26,7 @@ class BinaryTree {
       m_root = new NodeType;
       m_root->m_data = data;
     }
+    m_size++;
   }
   
   inline NodeType* search(T data) {
@@ -32,7 +34,7 @@ class BinaryTree {
   }
  
   inline void print() {
-    printNode(m_root);
+    printNode(m_root, m_size, true);
   }
 
   inline void clear() {
@@ -42,8 +44,8 @@ class BinaryTree {
  private:
   inline void destroyNode(NodeType* node) {
     if (node) {
-      destroyNode(node);
-      destroyNode(node);
+      destroyNode(node->m_left);
+      destroyNode(node->m_right);
       delete node;
     }
   }
@@ -81,17 +83,20 @@ class BinaryTree {
     }
   }
 
-  inline void printNode(NodeType* node, int level = 0) {
+  inline void printNode(NodeType* node, int level, bool endl) {
     if (node) {
-      printNode(node->m_left, level+1);
       for (int i = 0; i < level; i++) std::cout << " ";
-      std::cout << node->m_data << std::endl;
-      printNode(node->m_right, level+1);
+      //std::cout << node->m_data;
+      printf("%2d", node->m_data);
+      if (endl) std::cout << std::endl;
+      printNode(node->m_left, level-2, false);
+      printNode(node->m_right, level+2, true);
     }
   }
 
  private:
   NodeType* m_root = nullptr;
+  SizeType m_size = 0;
 
 };
 
