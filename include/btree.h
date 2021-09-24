@@ -1,6 +1,9 @@
 #ifndef _BTREE_H
 #define _BTREE_H
 
+#include <string>
+#include <vector>
+
 template <typename T>
 struct Node {
   Node<T>* m_left = nullptr;
@@ -34,13 +37,13 @@ class BinaryTree {
   }
  
   inline void print() {
-    printNode(m_root, m_size, true);
+    printNode("", m_root, false);
   }
 
   inline void clear() {
     destroyNode(m_root);
   }
-
+  
  private:
   inline void destroyNode(NodeType* node) {
     if (node) {
@@ -83,21 +86,24 @@ class BinaryTree {
     }
   }
 
-  inline void printNode(NodeType* node, int level, bool endl) {
+  inline void printNode(const std::string& prefix, NodeType* node, bool is_left) {
     if (node) {
-      for (int i = 0; i < level; i++) std::cout << " ";
-      //std::cout << node->m_data;
-      printf("%2d", node->m_data);
-      if (endl) std::cout << std::endl;
-      printNode(node->m_left, level-2, false);
-      printNode(node->m_right, level+2, true);
+      std::cout << prefix;
+      if (is_left) {
+        std::cout << "├──";
+      } else {
+        std::cout << "└──";
+      }
+      std::cout << node->m_data << std::endl;
+      printNode(prefix + (is_left ? "|    " : "     "), node->m_left, true);
+      printNode(prefix + (is_left ? "|    " : "     "), node->m_right, false);
     }
+    
   }
 
  private:
   NodeType* m_root = nullptr;
   SizeType m_size = 0;
-
 };
 
 #endif

@@ -12,9 +12,12 @@ int main(int argc, char ** argv) {
   btree.insert(20);
   btree.insert(5);
   btree.insert(50);
+  btree.insert(3);
+  btree.insert(12);
 
-  std::cout << btree.search(20)->m_data << std::endl;
+  std::cout << "search(20): " << btree.search(20)->m_data << std::endl;
 
+  std::cout << "print:" << std::endl;
   btree.print();
 
   return 0;
