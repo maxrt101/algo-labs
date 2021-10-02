@@ -42,7 +42,7 @@ std::vector<uint64_t> vec_stoull(const std::vector<std::string>& vec) {
   for (const auto& element : vec) {
     auto value = std::stoull(element);
     if (value >= k_max_price) {
-      throw std::out_of_range("value can't be more than 10^9");
+      throw std::out_of_range("value can't be more than " + std::to_string(k_max_price));
     }
     result.push_back(value);
   }

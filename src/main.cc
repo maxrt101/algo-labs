@@ -24,7 +24,7 @@ static void die(const T& val) {
 }
 
 int main(const int argc, const char ** argv) {
-  auto args = mrt::args::Parser("Lab 3 Discount", {
+  auto args = mrt::args::Parser("Lab 3: Discount", {
     {"infile", 'V', {"-i", "--infile"}, "Input file name"},
     {"outfile", 'V', {"-o", "--outfile"}, "Output file name"},
     {"interactive", 'F', {"--interactive"}, "Interactive mode"}
