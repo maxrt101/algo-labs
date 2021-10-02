@@ -17,7 +17,7 @@ Unix like OSs (Linux, MacOS):
 Dependencies: `make`, `gcc` or `clang`  
 Run:  
  - Clone the repo  
- - `cd algo_labs && git chekout lab3`  
+ - `cd algo_labs && git chekout lab3 && git submodule update --init`  
  - `make`  
  - `./build/bin/discount`
  - Run `./build/bin/discount -h` to get help
