@@ -4,11 +4,15 @@ PREFIX    := $(TOPDIR)/build
 BINDIR    := $(PREFIX)/bin
 
 CXX       := clang++
-CXXFLAGS  := -std=c++17 -I$(TOPDIR)/include -I$(PREFIX)/include -g
+CXXFLAGS  := -std=c++17 -I$(TOPDIR)/include -I$(PREFIX)/include
 LDFLAGS   := -L$(PREFIX)/lib -lmrt
 
 SRC       := src/main.cc src/discount.cc src/utils.cc
 TARGET    := $(BINDIR)/discount
+
+ifeq ("$(DEBUG)","1")
+CXXFLAGS += -g -DDEBUG
+endif
 
 .PHONY: build
 
