@@ -1,3 +1,9 @@
+/**
+ * String Utilities Implementation
+ *
+ * @file   utils.cc
+ * @author maxrt101
+ */
 #include <algorithm>
 #include <sstream>
 #include <cctype>

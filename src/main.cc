@@ -1,4 +1,8 @@
 /**
+ * Main file 
+ *
+ * @file   main.cc
+ * @author maxrt101
  */
 
 #include <mrt/args/args.h>
@@ -43,8 +47,6 @@ int main(const int argc, const char ** argv) {
     } else {
       data = DiscountData(infile);
     }
-  } catch (const std::string& s) {
-    die(s);
   } catch (const char* s) {
     die(s);
   } catch (const std::exception& e) {

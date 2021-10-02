@@ -1,3 +1,10 @@
+/**
+ * Discount Counter
+ *
+ * @file   discount.cc
+ * @author maxrt101
+ */
+
 #include <string>
 #include <fstream>
 #include <iostream>

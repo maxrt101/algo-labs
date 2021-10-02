@@ -1,3 +1,10 @@
+/**
+ * String Utilities
+ *
+ * @file   utils.h
+ * @author maxrt101
+ */
+
 #ifndef _UTILS_H
 #define _UTILS_H
 
