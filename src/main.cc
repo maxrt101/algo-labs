@@ -30,20 +30,30 @@ int main(const int argc, const char ** argv) {
     {"interactive", 'F', {"--interactive"}, "Interactive mode"}
   }).parse(argc, argv);
 
-  std::string infile = args.getFirstOr("infile", "discnt.in");
-  std::string outfile = args.getFirstOr("outfile", "discnt.out");
+  std::string infile = args.getFirstOr("infile", k_default_infile);
+  std::string outfile = args.getFirstOr("outfile", k_default_outfile);
   
   DiscountData data;
 
   try {
     if (args.exists("interactive")) {
       std::string input;
+
+      // Parse prices array
       std::cout << "Prices: ";
       std::getline(std::cin, input);
       data.data = vec_stoull(split(input, ' '));
+
+      // Parse dicount
       std::cout << "Discount: ";
       std::getline(std::cin, input);
-      data.discount = std::stoi(input) % 100;
+      int discount = std::stoi(input);
+
+      // Check discount bounds
+      if (discount < 0) {
+        die("Discount can't be less than zero");
+      }
+      data.discount = discount > 100 ? discount % 100 : discount; // if discount > 100, it overlaps
     } else {
       data = DiscountData(infile);
     }
@@ -54,7 +64,7 @@ int main(const int argc, const char ** argv) {
   }
 
   if (data.data.size() > k_max_price_count) {
-    die("Can't have more then " + std::to_string(k_max_price_count) + " prices");
+    die("Can't have more than " + std::to_string(k_max_price_count) + " prices");
   }
 
   std::sort(data.data.begin(), data.data.end());
@@ -62,7 +72,7 @@ int main(const int argc, const char ** argv) {
   auto begin = data.data.begin();
   auto end = data.data.end()-1;
 
-  double discount = data.discount / 100.0; // Get percentage in decimals
+  double discount = 1.0 - data.discount / 100.0; // Get percentage in decimals
   double sum = 0.0;
 
   while (begin <= end) {
