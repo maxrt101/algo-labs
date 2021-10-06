@@ -1,11 +1,11 @@
 
-TOPDIR    := $(shell pwd)
-PREFIX    := $(TOPDIR)/build
-BINDIR    := $(PREFIX)/bin
+export TOPDIR    := $(shell pwd)
+export PREFIX    := $(TOPDIR)/build
+export BINDIR    := $(PREFIX)/bin
 
-CXX       := clang++
-CXXFLAGS  := -std=c++17 -I$(TOPDIR)/include -I$(PREFIX)/include
-LDFLAGS   := -L$(PREFIX)/lib -lmrt
+export CXX       := clang++
+export CXXFLAGS  := -std=c++17 -I$(TOPDIR)/include -I$(PREFIX)/include
+export LDFLAGS   := -L$(PREFIX)/lib -lmrt
 
 SRC       := src/main.cc src/discount.cc src/utils.cc
 TARGET    := $(BINDIR)/discount
@@ -19,6 +19,9 @@ endif
 build: prepare
 	$(info Building $(TARGET))
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(SRC) -o $(TARGET)
+
+test: prepare
+	make -C tests PREFIX=$(PREFIX) DEBUG=$(DEBUG) V=$(V) TARGET_BINARY=$(TARGET)
 
 prepare:
 	mkdir -p $(PREFIX)

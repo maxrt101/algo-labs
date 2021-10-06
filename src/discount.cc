@@ -23,10 +23,11 @@ DiscountData::DiscountData(const std::string& filename) {
 
   this->data = vec_stoull(split(prices, ' '));
 
-  std::string discount;
-  std::getline(file, discount);
+  std::string discount_str;
+  std::getline(file, discount_str);
 
-  this->discount = std::stoi(discount) % 100;
+  int discount = std::stoi(discount_str);
+  this->discount = discount > 100 ? discount % 100 : discount;
 }
 
 
