@@ -24,3 +24,8 @@ Run:
 
 Widows: unsupported  
 
+## Tests:
+To Run:
+ - Do first 3 steps of 'How To Run' section
+ - `make test`
+
