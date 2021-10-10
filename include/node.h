@@ -11,9 +11,12 @@ struct Node {
   T data;
   Color color;
 
+  inline Node() = default;
   inline Node(const T& data) : data(data) {}
   inline Node(Node<T>* parent) : parent(parent) {}
   inline Node(const T& data, Node<T>* parent) : data(data), parent(parent) {}
+  inline Node(const T& data, Node<T>* parent, Node<T>* left, Node<T>* right, Color color)
+    : data(data), parent(parent), left(left), right(right), color(color) {}
 };
 
 #endif

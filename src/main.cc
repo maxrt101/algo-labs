@@ -11,6 +11,8 @@ int main(int argc, char ** argv) {
   rbt.insert(20);
   rbt.insert(45);
 
+  rbt.remove(50);
+
   rbt.print();
 
   return 0;
