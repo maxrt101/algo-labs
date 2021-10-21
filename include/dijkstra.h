@@ -20,12 +20,13 @@ template <typename T>
 using Graph = std::vector<std::vector<T>>;
 
 template <typename T>
-inline int dijkstraMinimalDistance(const std::vector<T>& dist, const std::vector<bool>& visited) {
+inline int dijkstraMinimalDistance(const std::vector<T>& dist, const std::vector<bool>& visited, int& operations) {
   const T MAX_T = std::numeric_limits<T>::max();
 
   int minimum = MAX_T, index;
 
   for (int i = 0; i < dist.size(); i++) {
+    operations++;
     if (!visited[i] && dist[i] <= minimum) {
       minimum = dist[i];
       index = i;
@@ -35,7 +36,7 @@ inline int dijkstraMinimalDistance(const std::vector<T>& dist, const std::vector
 }
 
 template <typename T, typename DistanceType = int>
-inline std::vector<T> dijkstra(Graph<T> graph, DistanceType src) {
+inline std::vector<T> dijkstra(Graph<T> graph, DistanceType src, int& operations) {
   const T MAX_T = std::numeric_limits<T>::max();
 
   std::vector<T> dist(graph.size());
@@ -49,9 +50,10 @@ inline std::vector<T> dijkstra(Graph<T> graph, DistanceType src) {
   dist[src] = 0;
 
   for (int i = 0; i < dist.size(); i++) {
-    int m = dijkstraMinimalDistance(dist, visited);
+    int m = dijkstraMinimalDistance(dist, visited, operations);
     visited[m] = true;
     for (int i = 0; i < dist.size(); i++) {
+      operations++;
       if (!visited[i] && graph[m][i]
        && dist[m] != MAX_T
        && dist[m] + graph[m][i] < dist[i]) {
