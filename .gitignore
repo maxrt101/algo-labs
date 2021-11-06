@@ -34,3 +34,9 @@
 # MacOS
 .DS_Store
 
+# Vim
+*.swp
+
+# Project specific
+build/
+
