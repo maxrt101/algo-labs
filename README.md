@@ -14,13 +14,13 @@ Kruskal's algorithm - finds a minimum spanning forest of an undirected edge-weig
 At the termination of the algorithm, the forest forms a minimum spanning forest of the graph. If the graph is connected, the forest has a single component and forms a minimum spanning tree.  
 
 ## How to run:
-Unix like OSs (Linux, MacOS):
-Dependencies: `make`, `gcc` or `clang`
-Run:
- - Clone the repo
- - `cd algo_labs && git checkout lab5 && git submodule update --init`
- - `make`
- - `./build/bin/kruskals`
+Unix like OSs (Linux, MacOS):  
+Dependencies: `make`, `gcc` or `clang`  
+Run:  
+ - Clone the repo  
+ - `cd algo_labs && git checkout lab5 && git submodule update --init`  
+ - `make`  
+ - `./build/bin/kruskals`  
 
 Windows: unsupported
 
