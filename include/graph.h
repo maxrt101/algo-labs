@@ -53,8 +53,8 @@ class Graph {
     for (const auto& [start, dest] : m_data) {
       for (const auto& [end, dist] : dest) {
         if (rhs.m_data.find(start) == rhs.m_data.end()
-         && rhs.m_data[start].find(end) == rhs.m_data[start].end()
-         && rhs.m_data[start][end] != dist)
+         || rhs.m_data[start].find(end) == rhs.m_data[start].end()
+         || rhs.m_data[start][end] != dist)
           return false;
       }
     }
