@@ -74,11 +74,11 @@ class Graph {
   // Builds Minimum Spanning Tree using Kruskal's agorithm
   inline Graph buildMST() const {
     auto graph = toVector();
-    std::vector<V> parent;
+    std::map<V, V> parent;
     Graph result;
 
-    for (int i = 0; i < m_data.size(); i++) {
-      parent.push_back(i);
+    for (const auto& [start, dest] : m_data) {
+      parent[start] = start;
     }
 
     std::sort(graph.begin(), graph.end(),
@@ -99,7 +99,7 @@ class Graph {
   }
 
  private:
-  V findSet(const std::vector<V>& parent, V i) const {
+  V findSet(std::map<V, V>& parent, V i) const {
     if (i == parent[i]) {
       return i;
     } else {
@@ -107,7 +107,7 @@ class Graph {
     }
   }
 
-  void unionSet(std::vector<V>& parent, V u, V v) const {
+  void unionSet(std::map<V, V>& parent, V u, V v) const {
     parent[u] = parent[v];
   }
 };
