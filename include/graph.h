@@ -12,22 +12,22 @@
 #include <map>
 
 template <typename V = char, typename T = int>
-class Vertex {
+class Edge {
  public:
   V start, end;
   T distance;
 
-  inline Vertex(V start, V end, T distance) : start(start), end(end), distance(distance) {}
+  inline Edge(V start, V end, T distance) : start(start), end(end), distance(distance) {}
 };
 
 template <typename V = char, typename T = int>
 class Graph {
  public:
-  using VertexMap = std::map<V, std::map<V, T>>;
-  using VertexVec = std::vector<Vertex<V, T>>;
+  using EdgeMap = std::map<V, std::map<V, T>>;
+  using EdgeVec = std::vector<Edge<V, T>>;
 
  private:
-  mutable VertexMap m_data;
+  mutable EdgeMap m_data;
 
  public:
   inline Graph() {}
@@ -61,11 +61,11 @@ class Graph {
     return true;
   }
 
-  inline VertexVec toVector() const {
-    VertexVec result;
+  inline EdgeVec toVector() const {
+    EdgeVec result;
     for (const auto& [start, dest] : m_data) {
       for (const auto& [end, dist] : dest) {
-        result.push_back(Vertex(start, end, dist));
+        result.push_back(Edge(start, end, dist));
       }
     }
     return result;
@@ -77,7 +77,7 @@ class Graph {
     std::map<V, V> parent;
     Graph result;
 
-    for (const auto& [start, dest] : m_data) {
+    for (const auto& [start, _] : m_data) {
       parent[start] = start;
     }
 
@@ -86,11 +86,11 @@ class Graph {
         return lhs.distance < rhs.distance;
       });
 
-    for (const auto& vertex : graph) {
-      V u = findSet(parent, vertex.start);
-      V v = findSet(parent, vertex.end);
+    for (const auto& edge : graph) {
+      V u = findSet(parent, edge.start);
+      V v = findSet(parent, edge.end);
       if (u != v) {
-        result.addEdge(vertex.start, vertex.end, vertex.distance);
+        result.addEdge(edge.start, edge.end, edge.distance);
         unionSet(parent, u, v);
       }
     }
