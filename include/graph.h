@@ -26,6 +26,11 @@ class Graph {
   using EdgeMap = std::map<V, std::map<V, T>>;
   using EdgeVec = std::vector<Edge<V, T>>;
 
+  struct MstResult {
+    Graph graph;
+    T weight;
+  };
+
  private:
   mutable EdgeMap m_data;
 
@@ -72,10 +77,11 @@ class Graph {
   }
 
   // Builds Minimum Spanning Tree using Kruskal's agorithm
-  inline Graph buildMST() const {
+  inline MstResult buildMST() const {
     auto graph = toVector();
     std::map<V, V> parent;
     Graph result;
+    T weight = 0;
 
     for (const auto& [start, _] : m_data) {
       parent[start] = start;
@@ -91,11 +97,12 @@ class Graph {
       V v = findSet(parent, edge.end);
       if (u != v) {
         result.addEdge(edge.start, edge.end, edge.distance);
+        weight += edge.distance;
         unionSet(parent, u, v);
       }
     }
 
-    return result;
+    return MstResult{result, weight};
   }
 
  private:

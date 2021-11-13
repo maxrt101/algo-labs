@@ -34,9 +34,9 @@ int main(int argc, char ** argv) {
     expected.addEdge(2, 3, 2);
     expected.addEdge(4, 5, 1);
     
-    Graph mst = g.buildMST();
+    auto res = g.buildMST();
 
-    return mst == expected;
+    return res.graph == expected;
   }});
 
   testFramework.addTest({"Test 2", []() -> bool {
@@ -53,9 +53,9 @@ int main(int argc, char ** argv) {
     expected.addEdge(1, 2, 18);
     expected.addEdge(2, 3, 13);
 
-    Graph mst = g.buildMST();
+    auto res = g.buildMST();
 
-    return mst == expected;
+    return res.graph == expected;
   }});
 
   testFramework.addTest({"Test 3", []() -> bool {
@@ -74,9 +74,27 @@ int main(int argc, char ** argv) {
     expected.addEdge(2, 3, 51);
     expected.addEdge(3, 4, 31);
     
-    Graph mst = g.buildMST();
+    auto res = g.buildMST();
 
-    return mst == expected;
+    return res.graph == expected;
+  }});
+  
+  testFramework.addTest({"Test 4", []() -> bool {
+    Graph g;
+
+    g.addEdge(0, 1, 1);
+    g.addEdge(1, 2, 2);
+    g.addEdge(2, 3, 1);
+    g.addEdge(3, 0, 3);
+    g.addEdge(0, 4, 5);
+    g.addEdge(4, 5, 3);
+    g.addEdge(5, 1, 6);
+    g.addEdge(0, 5, 2);
+    g.addEdge(0, 2, 7);
+
+    auto res = g.buildMST();
+
+    return res.weight == 9;
   }});
 
   return !testFramework.run(true);
