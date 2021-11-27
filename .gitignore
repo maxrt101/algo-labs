@@ -34,3 +34,15 @@
 # MacOS
 .DS_Store
 
+# vscode
+.vscode
+
+# vim
+*.swp
+
+# Project Specific
+build/
+
+# Task Specific
+ijones.in
+ijones.out
