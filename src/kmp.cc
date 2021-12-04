@@ -29,8 +29,6 @@ std::vector<int64_t> kmp(const std::string& input, const std::string& substring)
   std::vector<int64_t> partial_match = generatePartialMatchTable(substring);
   std::vector<int64_t> match;
 
-  /*DEBUG*/ std::cout << "prefix: "; for (const auto& x : partial_match) std::cout << x << " "; std::cout << std::endl;
-
   for (int i = 0, j = 0; i < input.size(); ) {
     if (input[i] == substring[j]) {
       j++;
