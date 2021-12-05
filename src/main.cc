@@ -33,6 +33,11 @@ int main(int argc, const char ** argv) {
       return {expected == kmp("abcdefabc", "abc"), ""};
     }});
 
+    testFramework.addTest({"Test 4", []() -> mrt::test::Result {
+      std::vector<int64_t> expected = {6};
+
+      return {expected == kmp("abxabcabcaby", "abcaby"), ""};
+    }});
     testFramework.run(true);
   } else if (args.exists("str") && args.exists("sub")) {
     auto res = kmp(args.getFirst("str"), args.getFirst("sub"));

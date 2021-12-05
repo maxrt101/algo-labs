@@ -5,12 +5,13 @@
 
 static std::vector<int64_t> generatePartialMatchTable(const std::string& substring) {
   std::vector<int64_t> table(substring.size(), 0);
-  
+
   for (int i = 1, j = 0; i < substring.size(); i++) {
     if (substring[i] == substring[j]) {
-      table[i++] = j++;
+      table[i++] = ++j;
     } else {
       if (j != 0) {
+        table[i - 1] = j + 1;
         j = table[j - 1];
       } else {
         table[i++] = 0;

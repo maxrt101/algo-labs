@@ -5,7 +5,6 @@ export BINDIR    := $(PREFIX)/bin
 
 export CXX       := clang++
 export CXXFLAGS  := -std=c++17 -I$(TOPDIR)/include -I$(PREFIX)/include
-export LDFLAGS   := -L$(PREFIX)/lib -lmrt
 
 SRC       := src/main.cc src/kmp.cc
 TARGET    := $(BINDIR)/kmp
@@ -18,7 +17,7 @@ endif
 
 build: prepare
 	$(info Building $(TARGET))
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(SRC) -o $(TARGET)
+	$(CXX) $(CXXFLAGS) $(SRC) -o $(TARGET)
 
 prepare:
 	mkdir -p $(PREFIX)
